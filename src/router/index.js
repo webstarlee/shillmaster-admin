@@ -49,6 +49,14 @@ const routes = [
         component: () => import(/* webpackChunkName: "home" */ '@/views/Groups.vue'),
       },
       {
+        path: '/group-management/:group_id',
+        name: 'GroupDetail',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "home" */ '@/views/GroupDetail.vue'),
+      },
+      {
         path: '/token-management',
         name: 'TokenManagement',
         // route level code-splitting

@@ -8,9 +8,7 @@
         <v-card-text>
             <v-data-table :headers="headers" :items="groups" :sort-by="[{ key: 'no', order: 'asc' }]" :search="search">
                 <template v-slot:item.actions="{ item }">
-                    <v-icon size="small" class="me-2" @click="editItem(item.raw)">
-                        mdi-pencil
-                    </v-icon>
+                    <v-btn icon="mdi-information-variant" :to="`/group-management/${item.raw.group_id}`" color="blue" size="x-small"></v-btn>
                 </template>
                 <template v-slot:no-data>
                     no data

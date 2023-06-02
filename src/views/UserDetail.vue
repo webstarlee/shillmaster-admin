@@ -1,5 +1,4 @@
 <template>
-    User Deta
     <v-card>
         <v-card-title>
             <div class="text-subtitle-1 text-medium-emphasis">Fullname: {{ user.fullname }}</div>
@@ -8,7 +7,7 @@
             <div class="text-subtitle-1 text-medium-emphasis">Total Projects: {{ user.total_shills }}</div>
         </v-card-title>
         <v-tabs v-model="tab" bg-color="blue">
-            <v-tab value="latest_projects">Latest Projects</v-tab>
+            <v-tab value="latest_projects">All Projects</v-tab>
             <v-tab value="groups">Groups</v-tab>
             <v-tab value="warns">Warns</v-tab>
             <v-tab value="bans">Bans</v-tab>
@@ -17,12 +16,11 @@
         <v-card-text>
             <v-window v-model="tab">
                 <v-window-item value="latest_projects">
-                    <v-table>
+                    <v-table fixed-header height="500px">
                         <thead>
                             <tr>
                                 <th id="no_column" class="text-left">No</th>
                                 <th id="symbol_column" class="text-left">Symbol</th>
-                                <th id="contract_column" class="text-left d-none d-md-table-cell">Token</th>
                                 <th id="shared_marketcap_column" class="text-left">Shared Marketcap</th>
                                 <th id="current_marketcap_column" class="text-left">Current Marketcap</th>
                                 <th id="ath_column" class="text-left">ATH</th>
@@ -31,9 +29,12 @@
                         <tbody>
                             <tr v-for="item, index in user.latest_shills" :key="item.no">
                                 <td>{{ index + 1 }}</td>
-                                <td><v-btn variant="plain" :href="item.pair_url" target="blink">{{ item.symbol }}</v-btn>
+                                <td>
+                                    <v-btn variant="plain" :href="item.pair_url" target="blink">
+                                        {{ item.symbol }}
+                                        <v-tooltip activator="parent" scrim location="top">{{ item.token }}</v-tooltip>
+                                    </v-btn>
                                 </td>
-                                <td class="d-none d-md-table-cell">{{ item.token }}</td>
                                 <td>{{ $numFormatWithDollar(item.marketcap) }}</td>
                                 <td v-if="$isActive(item.status)">{{ $numFormatWithDollar(item.current_marketcap) }} ({{
                                     $getMultiple(item.current_marketcap, item.marketcap) }})</td>
@@ -54,10 +55,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item, index in user.groups" :key="item.no">
+                            <tr v-if="user.groups.length > 0" v-for="item, index in user.groups" :key="item.no">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ item.title }}</td>
                                 <td>{{ item.group_id }}</td>
+                            </tr>
+                            <tr v-else>
+                                <td colspan="3" class="text-center">No Groups</td>
                             </tr>
                         </tbody>
                     </v-table>
@@ -80,7 +84,8 @@
                                 <td>{{ item.title }}</td>
                                 <td>{{ item.group_id }}</td>
                                 <td>{{ item.count }}</td>
-                                <td><v-btn color="red" icon="mdi-delete" @click="openWarnDialog(item.group_id)" title="Remove Warning" size="x-small"></v-btn></td>
+                                <td><v-btn color="red" icon="mdi-delete" @click="openWarnDialog(item.group_id)"
+                                        title="Remove Warning" size="x-small"></v-btn></td>
                             </tr>
                             <tr v-else>
                                 <td colspan="5" class="text-center">No Warns</td>
@@ -104,7 +109,8 @@
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ item.title }}</td>
                                 <td>{{ item.group_id }}</td>
-                                <td><v-btn color="red" icon="mdi-delete" @click="openBanDialog(item.group_id)" title="Remove Warning" size="x-small"></v-btn></td>
+                                <td><v-btn color="red" icon="mdi-delete" @click="openBanDialog(item.group_id)"
+                                        title="Remove Warning" size="x-small"></v-btn></td>
                             </tr>
                             <tr v-else>
                                 <td colspan="4" class="text-center">No Bans</td>
