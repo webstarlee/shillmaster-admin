@@ -45,9 +45,9 @@
                     <v-toolbar color="transparent" height="50">
                         <v-text-field v-model="search" label="Search" class="mt-2" density="compact"
                             append-inner-icon="mdi-magnify" hide-details single-line></v-text-field>
-                        <v-dialog v-model="dialog" max-width="500px">
+                        <v-dialog v-model="dialog" persistent max-width="500px">
                             <v-card>
-                                <v-card-title>
+                                <v-card-title class="pt-5">
                                     <span class="text-h6">Edit {{ token.symbol }} Token</span>
                                 </v-card-title>
 
@@ -59,16 +59,16 @@
                                                     label="Username" variant="plain" hide-details></v-text-field>
                                             </v-col>
                                             <v-col cols="6 py-0" sm="6" md="3">
-                                                <v-text-field v-model="token.symbol" disabled color="blue" label="Username"
+                                                <v-text-field v-model="token.symbol" disabled color="blue" label="Symbol"
                                                     variant="plain" hide-details></v-text-field>
                                             </v-col>
                                             <v-col cols="6 py-0" sm="6" md="3">
                                                 <v-text-field prefix="$" v-model="token.marketcap" disabled color="blue"
-                                                    label="Marketcap" variant="underlined" hide-details></v-text-field>
+                                                    label="Marketcap" variant="plain" hide-details></v-text-field>
                                             </v-col>
                                             <v-col cols="6 py-0" sm="6" md="3">
                                                 <v-text-field prefix="$" v-model="token.current_marketcap" disabled
-                                                    color="blue" label="Current" variant="underlined"
+                                                    color="blue" label="Current" variant="plain"
                                                     hide-details></v-text-field>
                                             </v-col>
                                         </v-row>

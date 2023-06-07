@@ -11,10 +11,10 @@
             <v-list nav>
                 <v-list-item prepend-icon="mdi-home" title="HOME" value="home" to="/dashboard"></v-list-item>
                 <v-list-item prepend-icon="mdi-cog" title="SETTING" value="setting" to="/setting"></v-list-item>
-                <v-list-item prepend-icon="mdi-account-multiple" :active="isActive('user-management')" title="USER MANAGEMENT" value="user-manage"
-                    to="/user-management"></v-list-item>
-                <v-list-item prepend-icon="mdi-home-group" :active="isActive('group-management')" title="GROUP MANAGEMENT" value="group-manage"
-                    to="/group-management"></v-list-item>
+                <v-list-item prepend-icon="mdi-account-multiple" :active="isActive('user-management')"
+                    title="USER MANAGEMENT" value="user-manage" to="/user-management"></v-list-item>
+                <v-list-item prepend-icon="mdi-home-group" :active="isActive('group-management')" title="GROUP MANAGEMENT"
+                    value="group-manage" to="/group-management"></v-list-item>
                 <v-list-item prepend-icon="mdi-ethereum" title="TOKEN MANAGEMENT" value="token-manage"
                     to="/token-management"></v-list-item>
             </v-list>

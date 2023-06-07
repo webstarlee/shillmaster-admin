@@ -15,6 +15,14 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import * as labs from 'vuetify/labs/components'
 
+const customDarkTheme = {
+  dark: true,
+  colors: {
+    background: '#151f32',
+    surface: '#18273f',
+  },
+}
+
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   components: {
@@ -24,6 +32,9 @@ export default createVuetify({
   },
   directives,
   theme: {
-    defaultTheme: 'dark',
+    defaultTheme: 'customDarkTheme',
+    themes: {
+      customDarkTheme,
+    },
   },
 })
