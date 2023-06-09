@@ -1,0 +1,1 @@
+MONGO_URI = 'mongodb://mongo:L3mgF7RCFIHcq3HjfgUM@containers-us-west-54.railway.app:6647'
