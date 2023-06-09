@@ -4,7 +4,6 @@ from flask_restful import Resource, reqparse
 from flask import jsonify
 from flask_jwt_extended import jwt_required
 from helpers import price_format, multiple
-from util.encoder import AlchemyEncoder
 from util.logz import create_logger
 from util.msg import MSG_FIELD_DEFAULT
 from util.parse_json import parse_json
