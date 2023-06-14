@@ -1,5 +1,6 @@
 import json
 import db
+import re
 from flask_restful import Resource, reqparse
 from flask import jsonify
 from flask_jwt_extended import jwt_required
@@ -41,7 +42,13 @@ class GetProjectList(Resource):
 
         search_query = {}
         if search:
-            search_query = {"symbol": f"/.*{search}.*/i"}
+            pattern = re.compile(f'.*{search}.*', re.IGNORECASE)
+            symbol_query = {"symbol": pattern}
+            token_query = {"token": pattern}
+            group_query = {"group_id": pattern}
+            search_query = {'$or': [symbol_query, token_query, group_query]}
+            
+        print(search_query)
         raw_projects = db.Project.find(search_query).limit(skip+int(items_per_page)).skip(skip).sort([(f'{sort_by_key}', order)])
 
         projects = []

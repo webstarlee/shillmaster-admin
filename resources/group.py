@@ -35,13 +35,14 @@ class GetGroupList(Resource):
         ])
         return_groups = []
         for group in groups:
-            return_groups.append({
-                "_id": str(group["_id"]),
-                "group_id": group["group_id"],
-                "title": group["title"],
-                "shills": len(group["projects"]),
-                "users": len(group["users"])
-            })
+            if group['title'] != "":
+                return_groups.append({
+                    "_id": str(group["_id"]),
+                    "group_id": group["group_id"],
+                    "title": group["title"],
+                    "shills": len(group["projects"]),
+                    "users": len(group["users"])
+                })
         return (parse_json(return_groups))
 
 
